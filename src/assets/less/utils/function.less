@@ -1,0 +1,72 @@
+// 增加兼容性前缀
+.pre(@name, @args){
+  -webkit-@{name}:@args;
+  -moz-@{name}:@args;
+  -ms-@{name}:@args;
+  -o-@{name}:@args;
+  @{name}:@args;
+}
+// 动画
+.animation(@value){
+  .pre(animation, @value)
+}
+
+.transition(@arg){
+  .pre(transition,@arg);
+}
+
+.transform(@arg){
+  .pre(transform,@arg);
+}
+
+// 停在最后一帧的位置
+.transform_end(@arg){
+  .pre(transform,@arg);
+  .pre(animation-fill-mode, forwards);
+}
+
+// 多行溢出隐藏
+.text_overflow(@num){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @num;
+  -webkit-box-orient: vertical;
+}
+
+/**
+* keyframes
+  @prefix :要兼容的浏览器
+  @name： 动画名称
+  @content： 内容（和普通写法相同）
+  用法：  .keyframes(all,zindex,{
+            from{z-index :100;}
+            to{z-index: -100}
+          });
+*/
+.keyframes (@prefix,@name,@content) when (@prefix=def) {
+  @keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=moz) {
+  @-moz-keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=o) {
+  @-o-keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=webkit) {
+  @-webkit-keyframes  @name{
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=all) {
+  .keyframes(moz,@name,@content);
+  .keyframes(o,@name,@content);
+  .keyframes(webkit,@name,@content);
+  .keyframes(def,@name,@content);
+}

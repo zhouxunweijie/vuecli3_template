@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------	
+// common.less, 全局通用样式（更改vant默认字体）
+//-----------------------------------------------------	
+
+// 更改全局Tabbar字体
+.van-tabbar-item{
+  font-size: 20px !important
+}
+
+// 更改全局导航栏字体，更改全局返回按钮icon的大小
+.van-nav-bar__title,.van-nav-bar__arrow{
+  font-size: 36px !important
+}
+
+
+//-----------------------------------------------------	
+//  全局通用样式
+//-----------------------------------------------------	
+.content{
+  width: 100%;
+  height: 100%;
+}
+.content_group{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  .pre(box-sizing, border-box);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.content_group_noScroll{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  .pre(box-sizing, border-box);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.content_group_fixed{
+  top: 1.22667rem;
+  height: calc(100% - 1.22667rem);
+  background-color: #fff;
+}
+
+.text_overflow{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+
+.clearFix::before{
+  content: '';
+  display: block;
+  clear: both;
+}
